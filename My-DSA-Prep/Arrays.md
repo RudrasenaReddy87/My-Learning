@@ -303,13 +303,5 @@ print(max_subarray([-2,1,-3,4,-1,2,1,-5,4]))
 
 ---
 
-How to run
-
-- Save functions into `.py` files and run them with your local Python interpreter: `python file.py`.
-- For large-scale numeric tasks, install NumPy and use `numpy.ndarray` for performance.
-
-If you want, I will:
-- Convert the next file (`Linkedlist.md`) into the same roadmap style and update the todo list.
-- Add a non-invasive `run_examples.py` option to execute the 'Try it' examples across files.
 
 

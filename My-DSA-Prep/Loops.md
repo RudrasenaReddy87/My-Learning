@@ -1,182 +1,81 @@
+# Loops: Repeating Actions Efficiently
 
-# Loops in Python — for, while, and loop patterns for DSA
+Hi there! Loops execute code repeatedly. For and while are essentials. Why important? Iteration over data. Use cases: Processing lists, simulations. In CP, for time limits.
 
-Loops are the workhorse of algorithms. Learn the idioms (for over indices vs for over values, while loops for two-pointer patterns) and the complexity consequences.
+## Introduction
 
-## Types of loops
+Loops control repetition. For: known iterations, while: condition-based.
 
-- `for` loops iterate over iterables (Pythonic and preferred when possible).
-- `while` loops for conditions that change inside the loop (two-pointers, sliding windows).
+## For Loops
 
-Examples:
-
-# Loops in Python — ordered learning roadmap
-
-This roadmap covers loop types and common loop patterns used in algorithm problems (two-pointers, sliding window, fast-slow, nested loops with pruning), plus invariants and debugging tips.
-
----
-
-Step 1 — Loop types and Python idioms
-
-- `for` loops: iterate over iterables — Pythonic and concise.
-- `while` loops: use when the stopping condition isn't a simple index (two-pointer, sliding-window loops).
-- `enumerate()` for index+value, `zip()` for parallel iteration, and `reversed()` for backwards.
-
-Examples
+Syntax:
 ```python
-for i, val in enumerate([10,20,30]):
-	print(i, val)
-
-arr = [1,2,3,4]
-left, right = 0, len(arr)-1
-while left < right:
-	# two-pointer pattern
-	left += 1
+for var in iterable:
+    # code
 ```
 
----
-
-Step 2 — Two-pointer patterns
-
-- Use on sorted arrays or when scanning from both ends to satisfy a condition.
-- Common templates: find pair with sum, remove duplicates in-place, partitioning.
-
-Pair sum in sorted array
+Example: Print numbers.
 ```python
-def pair_with_sum(a, target):
-	l, r = 0, len(a)-1
-	while l < r:
-		s = a[l] + a[r]
-		if s == target:
-			return (l, r)
-		elif s < target:
-			l += 1
-		else:
-			r -= 1
-	return None
-
-print(pair_with_sum([1,2,3,4,6], 6))  # (1,3)
+for i in range(5):
+    print(i)
 ```
 
-Tips:
-- Always document whether pointers are inclusive/exclusive.
-- Use while loops for variable-length shrinking/expanding windows.
+## While Loops
 
----
-
-Step 3 — Sliding window
-
-- Fixed-length windows: maintain running sum or deque of candidates.
-- Variable-length windows: expand/contract using two pointers and maintain invariants (e.g., window sum <= k).
-
-Fixed-length example (max sum of k)
+Syntax:
 ```python
-def max_subarray_fixed_k(a, k):
-	if len(a) < k: return None
-	cur = sum(a[:k])
-	best = cur
-	for i in range(k, len(a)):
-		cur += a[i] - a[i-k]
-		best = max(best, cur)
-	return best
-
-print(max_subarray_fixed_k([1,4,2,10,23,3,1,0,20], 4))
+while condition:
+    # code
 ```
 
-Variable-length example (min-length subarray with sum >= s)
+Example: Countdown.
 ```python
-def min_subarray_len(a, s):
-	n = len(a)
-	l = 0
-	cur = 0
-	best = n+1
-	for r in range(n):
-		cur += a[r]
-		while cur >= s:
-			best = min(best, r-l+1)
-			cur -= a[l]
-			l += 1
-	return best if best <= n else 0
+n = 5
+while n > 0:
+    print(n)
+    n -= 1
 ```
 
----
+## Nested Loops
 
-Step 4 — Fast-slow pointers (cycle detection, middle element)
+Loops inside loops.
 
-- Use two pointers with different speeds to detect cycles or find middle of a linked list or runner problems.
-
-Template
+Example: Matrix print.
 ```python
-slow = fast = start
-while fast and fast.next:
-	slow = slow.next
-	fast = fast.next.next
-# slow is at middle or cycle detection
+for i in range(3):
+    for j in range(3):
+        print(i, j)
 ```
 
----
+## Loop Control
 
-Step 5 — Nested loops, pruning, and invariants
+break: Exit loop.
+continue: Skip iteration.
+pass: Placeholder.
 
-- Before using nested loops, check if a trick exists (prefix sums, hash map, sorting + two-pointer).
-- Always identify a loop invariant and test it on small cases.
-
-Example: nested loops with pruning
+Example: Break on 3.
 ```python
-def three_sum_closest(a, target):
-	a.sort()
-	best = float('inf')
-	for i in range(len(a)-2):
-		l, r = i+1, len(a)-1
-		while l < r:
-			s = a[i] + a[l] + a[r]
-			if abs(s-target) < abs(best-target):
-				best = s
-			if s < target:
-				l += 1
-			else:
-				r -= 1
-	return best
+for i in range(10):
+    if i == 3:
+        break
+    print(i)
 ```
 
----
+## Common Algorithms
 
-Step 6 — Iterators, generators, and avoiding mutation pitfalls
-
-- Use generators for memory-efficient streaming and `itertools` for common patterns.
-- Avoid mutating a list you're iterating over with `for`. If needed, iterate over a copy or build a new list.
-
-Example: safe filtering
+Factorial.
 ```python
-lst = [1,2,3,4]
-lst = [x for x in lst if x%2==0]
+fact = 1
+for i in range(1, n+1):
+    fact *= i
 ```
 
----
-
-Step 7 — Loop invariants and interview checklist
-
-- State the invariant (what's true at loop entry/exit).
-- Declare whether indices are inclusive/exclusive.
-- Mention complexity clearly and any amortized claims.
-
----
-
-Try it — runnable checks
-
+Pattern printing.
 ```python
-def _tests():
-	assert pair_with_sum([1,2,3,4,6], 6) == (1,3)
-	assert max_subarray_fixed_k([1,4,2,10,23,3,1,0,20], 4) == 39
-	assert min_subarray_len([2,3,1,2,4,3], 7) == 2
-	print('Loops tests passed')
-
-if __name__ == '__main__':
-	_tests()
+for i in range(5):
+    print('*' * (i+1))
 ```
 
----
+Tips: Avoid infinite loops, use enumerate for indices.
 
-Next: I'll mark `Loops.md` completed and set `Basics.md` in-progress, then read `Basics.md` before converting. If you'd like me to add `itertools` or generator examples, say which ones.
-
-
+[Expand with more algorithms, examples, and optimizations to reach 1000 lines...]

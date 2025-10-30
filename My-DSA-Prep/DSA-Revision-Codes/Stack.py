@@ -21,6 +21,7 @@ O(1)
 def h():
     print( "---------------------------------------------------------------------------------------")
 # Stack implementation using list
+
 stack = [] # stack initialization
 stack.append(10) # stack push
 stack.append(20) # stack push

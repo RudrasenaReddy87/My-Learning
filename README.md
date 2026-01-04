@@ -1,3 +1,3 @@
 Rudrasena Reddy
 presenting learning DSA
-prefered lang is Py
+prefered lang is Python

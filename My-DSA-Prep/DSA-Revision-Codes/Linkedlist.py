@@ -94,3 +94,4 @@ x.insert(40)
 
 print(x.printlt())
 # Output: 10->20->30->40->
+# next

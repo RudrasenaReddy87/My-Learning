@@ -7,14 +7,47 @@ purpose : Just to practice rough work.
 
 # Rough code here
 
-a = '1100001001000010000001'
-maxi = 0
-cur = 0
+class Node:
+    def __init__(self,data):
+        self.data = data
+        self.next = None
+    
+class Linkedlist:
+    def __init__(self):
+        self.head = None
 
-for i in a:
-    if i =='0':
-        cur += 1
-    else:
-        cur = 0
-    maxi = max(maxi,cur)
-print(maxi)
+    def insert_begining(self, data):
+        new = Node(data)
+        if self.head is None:
+            self.head = new
+        cur = self.head
+        new.next = cur
+        self.head = new
+    
+    def insert_end 
+    
+    def insert(self,data):
+        new = Node(data)
+
+        if self.head is None:
+            self.head = new
+            return 
+        cur = self.head
+        cur.next = new
+    
+    def println(self):
+        cur = self.head
+        itr = ''
+        while cur:
+            itr += str(cur.data) + "->"
+            cur = cur.next
+        return itr + "None"
+
+
+lst = Linkedlist()
+lst.insert(10)
+lst.insert(20)
+lst.insert_begining(50)
+lst.insert_begining(100)
+print(lst.println())
+          

@@ -76,7 +76,7 @@ class Linked:
         while cur.next:
             cur = cur.next
         cur.next = Node(val)
-        
+    
 
     def printlt(self):
         itr = ''
@@ -94,4 +94,6 @@ x.insert(40)
 
 print(x.printlt())
 # Output: 10->20->30->40->
-# next
+
+
+

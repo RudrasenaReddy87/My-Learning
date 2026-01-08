@@ -65,37 +65,6 @@ head.next = Node(20)
 print(head.data) # prints the data if we another 20 do `Head.next`
 
 
-class Linked:
-    def __init__(self):
-        self.head = None
-    def insert(self,val):
-        if self.head is None:
-            self.head = Node(val)
-            return
-        cur = self.head
-        while cur.next:
-            cur = cur.next
-        cur.next = Node(val)
-    
-
-    def printlt(self):
-        itr = ''
-        cur = self.head
-        while cur:
-            itr += str(cur.data) + '->'
-            cur = cur.next
-        return itr
-    
-x = Linked()
-x.insert(10)
-x.insert(20)
-x.insert(30)
-x.insert(40)
-
-print(x.printlt())
-# Output: 10->20->30->40->
-
-
 class Node:
     def __init__(self,data):
         self.data = data
@@ -146,6 +115,8 @@ class Linkedlist:
             self.head = new
             return 
         cur = self.head
+        while cur.next:
+            cur = cur.next
         cur.next = new
     
 
@@ -177,6 +148,18 @@ class Linkedlist:
                 cur.next=cur.next.next
             c += 1
             cur = cur.next
+
+    def rev(self):
+        cur = self.head
+        prev = None
+        while cur:
+            nxt = cur.next # it stores the next number 
+            cur.next = prev # it stores the prev number link(address)
+            prev = cur # it stores the current number in the prev
+            cur = nxt # it stores the next number in cur
+
+        self.head = prev # at the end we put the last prev as head
+
     def println(self):
         cur = self.head
         itr = ''
@@ -189,15 +172,11 @@ class Linkedlist:
 lst = Linkedlist()
 lst.insert(10)
 lst.insert(20)
-lst.insert_end(30)
-lst.insert_begining(50)
-lst.insert_begining(100)
-lst.insert_end(200)
-lst.insert_pos(2,80)
-
-print(lst.println())
-lst.delete_at_pos(0)
-
+lst.insert(30)
+lst.insert(40)
+lst.insert(50)
+lst.insert(60)
+lst.rev()
 
 print(lst.println())
 

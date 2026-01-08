@@ -57,6 +57,8 @@ class Linkedlist:
             self.head = new
             return 
         cur = self.head
+        while cur.next:
+            cur = cur.next
         cur.next = new
     
 
@@ -88,6 +90,18 @@ class Linkedlist:
                 cur.next=cur.next.next
             c += 1
             cur = cur.next
+
+    def rev(self):
+        cur = self.head
+        prev = None
+        while cur:
+            nxt = cur.next # it stores the next number 
+            cur.next = prev # it stores the prev number link(address)
+            prev = cur # it stores the current number in the prev
+            cur = nxt # it stores the next number in cur
+
+        self.head = prev # at the end we put the last prev as head
+
     def println(self):
         cur = self.head
         itr = ''
@@ -100,15 +114,11 @@ class Linkedlist:
 lst = Linkedlist()
 lst.insert(10)
 lst.insert(20)
-lst.insert_end(30)
-lst.insert_begining(50)
-lst.insert_begining(100)
-lst.insert_end(200)
-lst.insert_pos(2,80)
-
-print(lst.println())
-lst.delete_at_pos(0)
-
+lst.insert(30)
+lst.insert(40)
+lst.insert(50)
+lst.insert(60)
+lst.rev()
 
 print(lst.println())
           

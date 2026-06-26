@@ -7,43 +7,39 @@ purpose : Just to practice rough work.
 
 # Rough code here
 
+# reverse a linkedlist
+
 class Node:
     def __init__(self,data):
         self.data = data
         self.next = None
-    
+
 class Linkedlist:
     def __init__(self):
         self.head = None
 
-   
-    
-    def insert(self,data):
-        new = Node(data)
 
+    def reverse(self):
+        prev = None
+        cur = self.head
+        while cur:
+            next_node = cur.next
+            cur.next = prev
+            prev = cur
+            cur = next_node
+        self.head = prev
+            
+    def insert(self,x):
+        cur = self.head
+        new = Node(x)
         if self.head is None:
             self.head = new
-            return 
-        cur = self.head
+            return # dont forget return 
+        
         while cur.next:
             cur = cur.next
         cur.next = new
     
-
-    def rev(self):
-        cur = self.head
-        prev = None
-        while cur:
-            # 10 -> 20
-            nxt = cur.next
-            cur.next = prev
-            prev = cur
-            cur = nxt
-            # 10 <- 20
-        
-        self.head = prev
-
-
     def println(self):
         cur = self.head
         itr = ''
@@ -52,15 +48,14 @@ class Linkedlist:
             cur = cur.next
         return itr + "None"
 
+l1 = Linkedlist()
+l1.insert(10)
+l1.insert(20)
+l1.insert(30)
+l1.insert(40)
+l1.insert(50)
+l1.reverse()
 
-lst = Linkedlist()
-lst.insert(10)
-lst.insert(20)
-lst.insert(30)
-lst.insert(40)
-lst.insert(50)
-lst.insert(60)
-lst.rev()
-
-print(lst.println())
-          
+print(l1.println())
+        
+        

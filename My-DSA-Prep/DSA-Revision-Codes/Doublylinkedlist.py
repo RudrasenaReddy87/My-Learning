@@ -12,46 +12,57 @@ traverse is easy <-both directions->
 class Node:
     def __init__(self,data):
         self.data = data
-        self.next = self.prev = None
-    
-class Dlinkedlist:
+        self.next = None
+        self.prev = None
+class doub:
     def __init__(self):
         self.head = None
-    def insert(self,data):
+    
+    def insert(self, data):
+        cur = self.head
         new = Node(data)
         if self.head is None:
             self.head = new
             return 
-        cur = self.head
         while cur.next:
             cur = cur.next
         
         cur.next = new
         new.prev = cur
-        
-
-        
-    def println(self):
+    def last_delete(self):
         cur = self.head
-        itr = ''
-        while cur:
-            itr += str(cur.data)+"<->"
-            if cur and cur.next and cur.prev:
-                print("cur : ",cur.data)
-                print("prev : ",cur.prev.data)
-                print("next : ",cur.next.data)
+        while cur.next:
             cur = cur.next
-
-        return itr + "None"
-
         
+        cur.prev.next = None
+        cur.prev = None
 
-
-dlst = Dlinkedlist()
-dlst.insert(10)
-dlst.insert(20)
-dlst.insert(30)
-dlst.insert(40)
-dlst.insert(50)
-print(dlst.println())
-
+    def front_delete(self):
+        cur = self.head
+        self.head = cur.next
+        self.head.prev = None    
+    
+    def delete_pos(self,pos):
+        cur = self.head
+        for i in range(pos-1):
+            cur = cur.next
+        
+        cur.prev.next = cur.next
+        cur.next.prev = cur.prev
+    
+    def println(self):
+        itr = ''
+        cur = self.head
+        while cur:
+            itr += str(cur.data) + '<->'
+            cur = cur.next
+        return itr + "None"
+    
+d1 = doub()
+d1.insert(10)
+d1.insert(20)
+d1.insert(30)
+d1.insert(40)
+d1.insert(50)
+d1.delete_pos(3)
+print(d1.println())

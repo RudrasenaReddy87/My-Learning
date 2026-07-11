@@ -1,14 +1,4 @@
-# Complete DSA Guide (Python)
 
-A day-by-day, in-depth Data Structures & Algorithms guide with theory, diagrams-in-words, Python code, and time/space complexity analysis for every topic.
-
-> 💡 Tip: Read the theory first, then re-type the code yourself (don't just copy-paste) — that's what actually builds pattern recognition for interviews.
-
-## 📚 Table of Contents
-
-- [Day 3 — Arrays: Basic Operations](#day-3--arrays-basic-operations)
-
----
 
 ## Day 3 — Arrays: Basic Operations
 
